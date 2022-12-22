@@ -1,5 +1,28 @@
 <?php
     require_once("conexao.php");
+
+    if(count($_POST)>0){
+        $erro = false;
+
+        var_dump($_POST);
+
+        $nome = $_POST['nome'];
+        $email = $_POST['email'];
+        $telefone = $_POST['telefone'];
+        $nascimento = $_POST['nascimento'];
+
+        if(empty($nome)){
+            $erro = "Preencha o campo nome!";
+        } else if((strlen($nome)<6) || (strlen($nome)>60)){
+            $erro = "O nome deve ter entre 6 60 caracteres!";
+        } else if(substr($nome, 0, 1) == " "){
+            $erro = "O nome não deve iniciar com espaço";
+        }
+
+        if($erro){
+            echo "<p><b>ERRO: $erro</b></p>";
+        }
+    }
 ?>
 
 <!DOCTYPE html>
