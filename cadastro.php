@@ -1,10 +1,9 @@
 <?php
     require_once("conexao.php");
+    require_once("funcoes.php");
 
     if(count($_POST)>0){
         $erro = false;
-
-        var_dump($_POST);
 
         $nome = $_POST['nome'];
         $email = $_POST['email'];
@@ -25,8 +24,27 @@
             $erro = "O E-mail deve ser preenchido no padrão: exemplo@gmail.com";
         }
 
+        if(!empty($telefone)){
+            $telefone = limpar_texto($telefone);
+            if(strlen($telefone) != 11){
+                $erro = "O telefone foi preenchido incorretamente!";
+            }
+        }
+
+        if(empty($nascimento)){
+            $erro = "Preencha o campo de data de nascimento!";
+        } else if (strlen($nascimento = implode('-', array_reverse(explode('/',$nascimento)))) != 10){
+            $erro = "Data de Nascimento está incorreta!";
+        }
+        
         if($erro){
             echo "<p><b>ERRO: $erro</b></p>";
+        } else {
+            echo "'$nome', '$email', '$telefone', '$nascimento'";
+            $sql = "INSERT INTO clientes (nome, email, telefone, nascimento, dataCadastro) VALUES ('$nome', '$email', '$telefone', '$nascimento', NOW())";
+            $sqlQuery = $mysqli->query($sql) or die($mysqli->error);
+
+            echo "Usuário cadastrado com sucesso!!";
         }
     }
 ?>
