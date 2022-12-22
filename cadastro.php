@@ -42,13 +42,14 @@
 <body>
     <form method="POST" action="">
         <h1>Cadastrar Clientes</h1>
+        <p>Todos os campos com * são obrigatórios</p>
         <p>
             <label>Nome</label>
-            <input type="text" name="nome" placeholder="Ex: Vinicius Luiz Silva Sibin">
+            <input type="text" name="nome" placeholder="Ex: Vinicius Luiz Silva Sibin"> *
         </p>
         <p>
             <label>E-mail</label>
-            <input type="text" name="email" placeholder="Ex: exemplo@gmail.com">
+            <input type="text" name="email" placeholder="Ex: exemplo@gmail.com"> *
         </p>
         <p>
             <label>Telefone</label>
@@ -56,7 +57,7 @@
         </p>
         <p>
             <label>Nascimento</label>
-            <input type="text" name="nascimento" placeholder="Ex: 21/08/1998">
+            <input type="text" name="nascimento" placeholder="Ex: 21/08/1998"> *
         </p>
         <p>
             <button type="submit">Cadastrar</button> 
