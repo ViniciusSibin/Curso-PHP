@@ -19,6 +19,12 @@
             $erro = "O nome não deve iniciar com espaço";
         }
 
+        if(empty($email)){
+            $erro = "Preencha o campo E-mail!";
+        } else if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+            $erro = "O E-mail deve ser preenchido no padrão: exemplo@gmail.com";
+        }
+
         if($erro){
             echo "<p><b>ERRO: $erro</b></p>";
         }
