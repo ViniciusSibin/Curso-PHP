@@ -1,11 +1,14 @@
 <?php
-    require_once("conexão.php");
-    
+    require_once("conexao.php");
+    require_once("funcoes.php");
+    $sql = "SELECT * FROM clientes";
+    $tabelaClientes = $mysqli->query($sql) or die($mysqli->error);
+    $numLinhas = $tabelaClientes->num_rows;
 
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,7 +18,7 @@
 <body>
     <h1>Lista de clientes</h1>
     <p>Clientes cadastrados no sistema</p>
-    <table>
+    <table border="1" cellpadding="10">
         <thead>
             <th>ID</th>
             <th>Nome</th>
@@ -26,16 +29,30 @@
             <th></th>
         </thead>
         <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+            <?php if($numLinhas == 0){ ?> 
+                <tr>
+                    <td colspan="7">Nenhum cliente foi cadastrado!!!</td>    
+                </tr>
+            <?php } ?>
+
+            <?php while($cliente = $tabelaClientes->fetch_assoc()){ ?> 
+                <tr>  
+                    <td><?php echo $cliente['id']; ?></td>
+                    <td><?php echo $cliente['nome']; ?></td>
+                    <td><?php echo $cliente['email']; ?></td>
+                    <td><?php echo $cliente['telefone']; ?></td>
+                    <td><?php echo visualizaNascimento($cliente['nascimento']); ?></td>
+                    <td><?php echo $cliente['dataCadastro']; ?></td>
+                    <td>
+                        <a href="atualizarCadastro.php">Atualizar</a>
+                        <a href="deletarCadastro.php">Deletar</a>
+                    </td>
+                </tr>
+            <?php } ?>
         </tbody>
     </table>
+    <br>
+    <br>
+    <button><a href="cadastro.php">Cadastrar</a></button>
 </body>
 </html>
