@@ -45,7 +45,7 @@
                     <td><?php echo visualizaDataBanco($cliente['dataCadastro']); ?></td>
                     <td>
                         <a href="atualizarCadastro.php?id=<?php echo $cliente['id']; ?>">Atualizar</a>
-                        <a href="deletarCadastro.php">Deletar</a>
+                        <a href="deletarCadastro.php?id=<?php echo $cliente['id']; ?>">Deletar</a>
                     </td>
                 </tr>
             <?php } ?>
