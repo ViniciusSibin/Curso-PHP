@@ -40,7 +40,6 @@
         if($erro){
             echo "<p><b>ERRO: $erro</b></p>";
         } else {
-            echo "'$nome', '$email', '$telefone', '$nascimento'";
             $sql = "INSERT INTO clientes (nome, email, telefone, nascimento, dataCadastro) VALUES ('$nome', '$email', '$telefone', '$nascimento', NOW())";
             $sqlQuery = $mysqli->query($sql) or die($mysqli->error);
 
