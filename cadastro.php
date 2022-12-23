@@ -62,19 +62,19 @@
         <p>Todos os campos com * são obrigatórios</p>
         <p>
             <label>Nome</label>
-            <input type="text" name="nome" placeholder="Ex: Vinicius Luiz Silva Sibin"> *
+            <input value="<?php if(isset($_POST['nome'])) echo $_POST['nome'] ?>" type="text" name="nome" placeholder="Ex: Vinicius Luiz Silva Sibin"> *
         </p>
         <p>
             <label>E-mail</label>
-            <input type="text" name="email" placeholder="Ex: exemplo@gmail.com"> *
+            <input value="<?php if(isset($_POST['email'])) echo $_POST['email'] ?>" type="text" name="email" placeholder="Ex: exemplo@gmail.com"> *
         </p>
         <p>
             <label>Telefone</label>
-            <input type="text" name="telefone" placeholder="Ex: (44) 9 8765-4321">
+            <input value="<?php if(isset($_POST['telefone'])) echo $_POST['telefone'] ?>" type="text" name="telefone" placeholder="Ex: (44) 9 8765-4321">
         </p>
         <p>
             <label>Nascimento</label>
-            <input type="text" name="nascimento" placeholder="Ex: 21/08/1998"> *
+            <input value="<?php if(isset($_POST['nascimento'])) echo $_POST['nascimento'] ?>" type="text" name="nascimento" placeholder="Ex: 21/08/1998"> *
         </p>
         <p>
             <button type="submit">Cadastrar</button> 
