@@ -40,7 +40,7 @@
                     <td><?php echo $cliente['id']; ?></td>
                     <td><?php echo $cliente['nome']; ?></td>
                     <td><?php echo $cliente['email']; ?></td>
-                    <td><?php echo $cliente['telefone']; ?></td>
+                    <td><?php echo visualizaTelefone($cliente['telefone']); ?></td>
                     <td><?php echo visualizaNascimento($cliente['nascimento']); ?></td>
                     <td><?php echo $cliente['dataCadastro']; ?></td>
                     <td>
