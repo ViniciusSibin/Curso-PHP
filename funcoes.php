@@ -17,4 +17,8 @@
         $parte2 = substr($str, 7);
         return "($ddd) $parte1-$parte2";
     }
+
+    function visualizaDataBanco($str){
+        return date("d/m/Y H:i:s", strtotime($str));
+    }
 ?>

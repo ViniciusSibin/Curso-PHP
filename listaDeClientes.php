@@ -42,7 +42,7 @@
                     <td><?php echo $cliente['email']; ?></td>
                     <td><?php echo visualizaTelefone($cliente['telefone']); ?></td>
                     <td><?php echo visualizaNascimento($cliente['nascimento']); ?></td>
-                    <td><?php echo $cliente['dataCadastro']; ?></td>
+                    <td><?php echo visualizaDataBanco($cliente['dataCadastro']); ?></td>
                     <td>
                         <a href="atualizarCadastro.php">Atualizar</a>
                         <a href="deletarCadastro.php">Deletar</a>
