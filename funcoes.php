@@ -32,7 +32,7 @@
         $mail->Host = 'smtp-mail.outlook.com';
         $mail->Port = 587;
         $mail->SMTPAuth = true;
-        $mail->Username = 'vinisibim@gmail.com.br';
+        $mail->Username = 'vinisibim@hotmail.com.br';
         $mail->Password = 'A21081998b';
 
         $mail->SMTPSecure = false;

@@ -43,6 +43,9 @@
             $sql = "INSERT INTO clientes (nome, email, telefone, nascimento, dataCadastro) VALUES ('$nome', '$email', '$telefone', '$nascimento', NOW())";
             $sqlQuery = $mysqli->query($sql) or die($mysqli->error);
 
+            $mensagem = "<h1>Cadastro do usuário: $nome realizado com sucesso!!!</h1><p>Para realizar o login no sistema acesse <b>http://localhost/CURSO-PHP/</b></p><p>Usuário: $email <br> Senha: ...</p>";
+            enviarEmail("vinisibim@gmail.com", "Cadastro de Usuário no sistema", $mensagem);
+
             echo "Usuário cadastrado com sucesso!!";
         }
     }
