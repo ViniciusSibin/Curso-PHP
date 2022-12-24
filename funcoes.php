@@ -21,4 +21,29 @@
     function visualizaDataBanco($str){
         return date("d/m/Y H:i:s", strtotime($str));
     }
+    
+    use PHPMailer\PHPMailer\PHPMailer;
+    function enviarEmail($destinatario, $assunto, $mensagem){
+        require_once 'vendor/autoload.php';
+
+        $mail = new PHPMailer;
+        $mail->isSMTP();
+        $mail->SMTPDebug = 2;
+        $mail->Host = 'smtp-mail.outlook.com';
+        $mail->Port = 587;
+        $mail->SMTPAuth = true;
+        $mail->Username = 'vinisibim@gmail.com.br';
+        $mail->Password = 'A21081998b';
+
+        $mail->SMTPSecure = false;
+        $mail->isHTML(true);
+        $mail->CharSet = 'UTF-8';
+
+        $mail->setFrom('vinisibim@hotmail.com.br', "Vinicius Sibin");
+        $mail->addAddress("$destinatario");
+        $mail->Subject = "$assunto";
+        $mail->Body = "$mensagem";
+
+        return $mail->send();
+    }
 ?>
