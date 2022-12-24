@@ -10,6 +10,8 @@
         $telefone = $_POST['telefone'];
         $nascimento = $_POST['nascimento'];
 
+
+
         if(empty($nome)){
             $erro = "Preencha o campo nome!";
         } else if((strlen($nome)<6) || (strlen($nome)>60)){
@@ -64,20 +66,28 @@
         <h1>Cadastrar Clientes</h1>
         <p>Todos os campos com * são obrigatórios</p>
         <p>
-            <label>Nome</label>
+            <label>Nome:</label>
             <input value="<?php if(isset($_POST['nome'])) echo $_POST['nome'] ?>" type="text" name="nome" placeholder="Ex: Vinicius Luiz Silva Sibin"> *
         </p>
         <p>
-            <label>E-mail</label>
+            <label>E-mail:</label>
             <input value="<?php if(isset($_POST['email'])) echo $_POST['email'] ?>" type="text" name="email" placeholder="Ex: exemplo@gmail.com"> *
         </p>
         <p>
-            <label>Telefone</label>
+            <label>Telefone:</label>
             <input value="<?php if(isset($_POST['telefone'])) echo $_POST['telefone'] ?>" type="text" name="telefone" placeholder="Ex: (44) 9 8765-4321">
         </p>
         <p>
-            <label>Nascimento</label>
+            <label>Nascimento:</label>
             <input value="<?php if(isset($_POST['nascimento'])) echo $_POST['nascimento'] ?>" type="text" name="nascimento" placeholder="Ex: 21/08/1998"> *
+        </p>
+        <p>
+            <label>Senha:</label>
+            <input value="<?php if(isset($_POST['senha'])) echo $_POST['senha'] ?>" type="password" name="senha" placeholder="Ex: @1234Senha"> *
+        </p>
+        <p>
+            <label>Confirmar Senha:</label>
+            <input value="<?php if(isset($_POST['confirmarSenha'])) echo $_POST['confirmarSenha'] ?>" type="password" name="confirmarSenha" placeholder="Ex: @1234Senha"> *
         </p>
         <p>
             <button type="submit">Cadastrar</button> 
