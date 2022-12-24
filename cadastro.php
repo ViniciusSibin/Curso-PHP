@@ -9,7 +9,8 @@
         $email = $_POST['email'];
         $telefone = $_POST['telefone'];
         $nascimento = $_POST['nascimento'];
-
+        $senha = $_POST['senha'];
+        $confirmaSenha = $_POST['confirmaSenha'];
 
 
         if(empty($nome)){
@@ -38,11 +39,25 @@
         } else if (strlen($nascimento = implode('-', array_reverse(explode('/',$nascimento)))) != 10){
             $erro = "Data de Nascimento está incorreta!";
         }
-        
+
+        if(empty($senha)){
+            $erro = "Preencha o campo Senha";
+        } else if(strlen($senha)<6 || strlen($senha)>20){
+            $erro = "A senha deve conter entre 6 e 20 caracteres.";
+        } else if(substr($senha, 0, 1) == " "){
+            $erro = "A senha não deve iniciar com espaço";
+        }
+
+        if($confirmaSenha != $senha){
+            $erro = "A confirmação da senha deve ser igual a senha digitada!";
+        }
+
         if($erro){
             echo "<p><b>ERRO: $erro</b></p>";
         } else {
-            $sql = "INSERT INTO clientes (nome, email, telefone, nascimento, dataCadastro) VALUES ('$nome', '$email', '$telefone', '$nascimento', NOW())";
+            $senha = password_hash($senha, PASSWORD_DEFAULT);
+
+            $sql = "INSERT INTO clientes (nome, email, senha, telefone, nascimento, dataCadastro) VALUES ('$nome', '$email', '$senha', '$telefone', '$nascimento', NOW())";
             $sqlQuery = $mysqli->query($sql) or die($mysqli->error);
 
             $mensagem = "<h1>Cadastro do usuário: $nome realizado com sucesso!!!</h1><p>Para realizar o login no sistema acesse <b>http://localhost/CURSO-PHP/</b></p><p>Usuário: $email <br> Senha: ...</p>";
@@ -87,7 +102,7 @@
         </p>
         <p>
             <label>Confirmar Senha:</label>
-            <input value="<?php if(isset($_POST['confirmarSenha'])) echo $_POST['confirmarSenha'] ?>" type="password" name="confirmarSenha" placeholder="Ex: @1234Senha"> *
+            <input value="<?php if(isset($_POST['confirmaSenha'])) echo $_POST['confirmaSenha'] ?>" type="password" name="confirmaSenha" placeholder="Ex: @1234Senha"> *
         </p>
         <p>
             <button type="submit">Cadastrar</button> 
