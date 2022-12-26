@@ -99,7 +99,7 @@ if(count($_POST)>0){
                 $sql = "INSERT INTO clientes (nome, email, senha, telefone, nascimento, dataCadastro) VALUES ('$nome', '$email', '$senha', '$telefone', '$nascimento', NOW())";
                 $sqlQuery = $mysqli->query($sql) or die($mysqli->error);
     
-                $mensagem = "<h1>Cadastro do usuário: $nome realizado com sucesso!!!</h1><p>Para realizar o login no sistema acesse <b>http://localhost/CURSO-PHP/</b></p><p>Usuário: $email <br> Senha: $confirmaSenha</p>";
+                $mensagem = "<h1>Parabéns $nome!</h1><p><br>Sua conta no site ... foi criada com sucesso!</p><p><b>Usuário:</b> $email <br> <b>Senha:</b> $confirmaSenha</p><p>Para realizar o login no sistema acesse <b><a href=\"http://localhost/CURSO-PHP/\">Nome do site</a></b></p>";
                 $email = 'vinisibim@gmail.com';
                 enviarEmail($email, "Cadastro de Usuário no sistema", $mensagem);
     
