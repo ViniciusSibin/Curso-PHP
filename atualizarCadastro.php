@@ -42,6 +42,12 @@
             <label>Senha:</label>
             <input value="<?php if(isset($_POST['senha'])) echo $_POST['senha'] ?>" type="password" name="senha" placeholder="Ex: @1234Senha">
         </p>
+        <?php if($dadosUsuario['fotoPerfil']){ ?>
+        <p>
+            <label>Foto atual:</label>
+            <img height="45" src="<?php echo $dadosUsuario['fotoPerfil'];?>" alt="">
+        </p>
+        <?php }?>
         <p>
             <label>Foto de Perfil:</label>
             <input name="fotoPerfil" type="file">
@@ -114,6 +120,7 @@
                 $sqlQuery = $mysqli->query($sql) or die($mysqli->error);
     
                 echo "<p style='color: green;'><b>Usuário atualizado com sucesso!!</b></p>";
+                header('Refresh:0');
             }
         }
         ?>
