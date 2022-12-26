@@ -50,4 +50,29 @@
             return false;
         }
     }
+
+    function uploadArquivo ($error, $size, $name, $tmp_name, $diretorio){
+        if($error){
+            die("Falha ao enviar arquivo");
+        }
+
+        if($size > 2097152){
+            die("Arquivo muito grande!! Max: 2MB");
+        }
+        
+        $novoNomeDoArquivo = uniqid();
+        $extensao = strtolower(pathinfo($name, PATHINFO_EXTENSION));
+
+        if($extensao != "jpg" && $extensao != "png"){
+            die("Tipo de arquivo não aceito");
+        }
+
+        $path = $diretorio . $novoNomeDoArquivo . "." . $extensao;
+        $deu_certo = move_uploaded_file($tmp_name, $path);
+        if($deu_certo){
+            return $path;
+        } else {
+            return false;
+        }
+    }
 ?>
