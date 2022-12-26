@@ -28,7 +28,7 @@
 
         $mail = new PHPMailer;
         $mail->isSMTP();
-        $mail->SMTPDebug = 2;
+        $mail->SMTPDebug = 0; //Para visualizar o log do e-mail coloque o atributo com o valor 2
         $mail->Host = 'smtp-mail.outlook.com';
         $mail->Port = 587;
         $mail->SMTPAuth = true;
@@ -44,6 +44,10 @@
         $mail->Subject = "$assunto";
         $mail->Body = "$mensagem";
 
-        return $mail->send();
+        if($mail->send()){
+            return true;
+        } else {
+            return false;
+        }
     }
 ?>
