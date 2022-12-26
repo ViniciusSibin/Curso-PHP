@@ -20,7 +20,8 @@
     <p>Clientes cadastrados no sistema</p>
     <table border="1" cellpadding="10">
         <thead>
-            <th>ID</th>
+            <th>ID</th>    
+            <th>Imagem</th>
             <th>Nome</th>
             <th>E-mail</th>
             <th>Telefone</th>
@@ -38,6 +39,7 @@
             <?php while($cliente = $tabelaClientes->fetch_assoc()){ ?> 
                 <tr>  
                     <td><?php echo $cliente['id']; ?></td>
+                    <td><img height="45" src="<?php echo $cliente['fotoPerfil']; ?>" alt=""></td>
                     <td><?php echo $cliente['nome']; ?></td>
                     <td><?php echo $cliente['email']; ?></td>
                     <td><?php echo visualizaTelefone($cliente['telefone']); ?></td>
