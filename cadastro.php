@@ -96,8 +96,8 @@
             }
 
             $path = "";
-            if(isset($_FILES['fotoPerfil'])){
-                $arq = $_FILES['fotoPerfil'];
+            $arq = $_FILES['fotoPerfil'];
+            if(!empty($arq['name']) && !empty($arq['size'])){
                 $path = uploadArquivo ($arq['error'], $arq['size'], $arq['name'], $arq['tmp_name'], "arquivos/fotoPerfil/");
                 if($path == 1){
                     $erro = "Imagem com erro!";
