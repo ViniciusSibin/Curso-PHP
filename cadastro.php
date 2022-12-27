@@ -99,8 +99,12 @@
             if(isset($_FILES['fotoPerfil'])){
                 $arq = $_FILES['fotoPerfil'];
                 $path = uploadArquivo ($arq['error'], $arq['size'], $arq['name'], $arq['tmp_name'], "arquivos/fotoPerfil/");
-                if($path == false){
-                    $erro = "Falha ao enviar arquivo. Tente novamente";
+                if($path == 1){
+                    $erro = "Imagem com erro!";
+                } else if($path == 2) {
+                    $erro = "Arquivo muito grande!! Max: 2MB";
+                } else if($path == 3) {
+                    $erro = "Tipo de arquivo não aceito, tipos aceitos:<br> <b>jpg</b>, <b>png</b>";
                 }
             }
 
