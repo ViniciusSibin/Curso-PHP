@@ -2,6 +2,15 @@
     require_once("lib/conexao.php");
     require_once("lib/funcoes.php");
 
+    if(!isset($_SESSION)){
+        session_start();
+    }
+
+    if(!isset($_SESSION['usuario'])){
+        header("Location: index.php");
+        die();
+    }
+
     $idUsuario = $_GET['id'];
     $sqlUpdate = "SELECT * FROM clientes where id = '$idUsuario'";
     $updateQuery = $mysqli->query($sqlUpdate) or die($mysqli->error);

@@ -1,6 +1,15 @@
 <?php 
     require_once("lib/conexao.php");
 
+    if(!isset($_SESSION)){
+        session_start();
+    }
+
+    if(!isset($_SESSION['usuario'])){
+        header("Location: index.php");
+        die();
+    }
+
     $usuario = $_GET['id'];
     $sqlConsulta = "SELECT * FROM clientes WHERE id = $usuario";
     $consultaQuery = $mysqli->query($sqlConsulta) or die($mysqli->error);
