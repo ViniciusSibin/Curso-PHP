@@ -18,6 +18,7 @@ senha VARCHAR(256) NOT NULL,
 telefone VARCHAR(11),
 nascimento DATE NOT NULL,
 fotoPerfil VARCHAR(100),
+admin BOOLEAN NOT NULL,
 dataCadastro DATETIME,
 PRIMARY KEY(id)
 )DEFAULT CHARSET = utf8;
