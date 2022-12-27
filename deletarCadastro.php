@@ -1,5 +1,5 @@
 <?php 
-    require_once("conexao.php");
+    require_once("lib/conexao.php");
 
     $usuario = $_GET['id'];
     $sqlConsulta = "SELECT * FROM clientes WHERE id = $usuario";

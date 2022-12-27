@@ -1,6 +1,6 @@
 <?php
-    require_once("conexao.php");
-    require_once("funcoes.php");
+    require_once("lib/conexao.php");
+    require_once("lib/funcoes.php");
     $sql = "SELECT * FROM clientes";
     $tabelaClientes = $mysqli->query($sql) or die($mysqli->error);
     $numLinhas = $tabelaClientes->num_rows;
@@ -33,7 +33,7 @@
         <tbody>
             <?php if($numLinhas == 0){ ?> 
                 <tr>
-                    <td colspan="7">Nenhum cliente foi cadastrado!!!</td>    
+                    <td colspan="9">Nenhum cliente foi cadastrado!!!</td>    
                 </tr>
             <?php } ?>
 

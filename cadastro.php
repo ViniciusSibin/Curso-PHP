@@ -1,6 +1,6 @@
 <?php
-    require_once("conexao.php");
-    require_once("funcoes.php");  
+    require_once("lib/conexao.php");
+    require_once("lib/funcoes.php");  
     
     if(count($_POST)>0){
         $erro = false;
