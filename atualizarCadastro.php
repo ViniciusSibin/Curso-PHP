@@ -20,15 +20,14 @@
 </head>
 <body>
     <form enctype="multipart/form-data" method="POST" action="">
-        <h1>Cadastrar Clientes</h1>
-        <p>Todos os campos com <b style='color: red;'>*</b> são obrigatórios</p>
+        <h1>Atualização de Cadastro</h1>
         <p>
             <label>Nome: </label>
-            <input value="<?php if(isset($dadosUsuario['nome'])) echo $dadosUsuario['nome'] ?>" type="text" name="nome" placeholder="Ex: Vinicius Luiz Silva Sibin"> <b style='color: red;'>*</b>
+            <input value="<?php if(isset($dadosUsuario['nome'])) echo $dadosUsuario['nome'] ?>" type="text" name="nome" placeholder="Ex: Vinicius Luiz Silva Sibin">
         </p>
         <p>
             <label>E-mail: </label>
-            <input value="<?php if(isset($dadosUsuario['email'])) echo $dadosUsuario['email'] ?>" type="text" name="email" placeholder="Ex: exemplo@gmail.com"> <b style='color: red;'>*</b>
+            <input value="<?php if(isset($dadosUsuario['email'])) echo $dadosUsuario['email'] ?>" type="text" name="email" placeholder="Ex: exemplo@gmail.com">
         </p>
         <p>
             <label>Telefone: </label>
@@ -36,7 +35,7 @@
         </p>
         <p>
             <label>Data de Nascimento: </label>
-            <input value="<?php if(isset($dadosUsuario['nascimento'])) echo visualizaNascimento($dadosUsuario['nascimento']); ?>" type="text" name="nascimento" placeholder="Ex: 21/08/1998"> <b style='color: red;'>*</b>
+            <input value="<?php if(isset($dadosUsuario['nascimento'])) echo visualizaNascimento($dadosUsuario['nascimento']); ?>" type="text" name="nascimento" placeholder="Ex: 21/08/1998">
         </p>
         <p>
             <label>Senha:</label>
@@ -47,6 +46,7 @@
             <label>Foto atual:</label>
             <img height="45" src="<?php echo $dadosUsuario['fotoPerfil'];?>" alt="">
         </p>
+        <input name="fotoAntiga" value="<?php echo $dadosUsuario['fotoPerfil'];?>" type="hidden">
         <?php }?>
         <p>
             <label>Foto de Perfil:</label>
@@ -101,13 +101,22 @@
                     $sql_code_extra = "senha = '$senha_criptografada',";
                 }
             }    
+            
+            $arq = $_FILES['fotoPerfil'];
+            if(!empty($arq['name']) && !empty($arq['size'])){
+                $path = uploadArquivo($arq['error'], $arq['size'], $arq['name'], $arq['tmp_name'], "arquivos/fotoPerfil/");
+                if($path == 1){
+                    $erro = "Imagem com erro!";
+                } else if($path == 2) {
+                    $erro = "Arquivo muito grande!! Max: 2MB";
+                } else if($path == 3) {
+                    $erro = "Tipo de arquivo não aceito, tipos aceitos:<br> <b>jpg</b>, <b>png</b>, <b>jpeg</b>";
+                } else {
+                    $sql_code_extra .= " fotoPerfil = '$path', ";
 
-            $path = "";
-            if(isset($_FILES['fotoPerfil'])){
-                $arq = $_FILES['fotoPerfil'];
-                $path = uploadArquivo ($arq['error'], $arq['size'], $arq['name'], $arq['tmp_name'], "arquivos/fotoPerfil/");
-                if($path == false){
-                    $erro = "Falha ao enviar arquivo. Tente novamente";
+                    if(!empty($_POST['fotoAntiga'])){
+                        unlink($_POST['fotoAntiga']);
+                    }
                 }
             }
             
@@ -116,15 +125,13 @@
             } else {
                 $senha = password_hash($senha, PASSWORD_DEFAULT);
 
-                $sql = "UPDATE cursophp.clientes SET nome='$nome', email='$email', $sql_code_extra telefone='$telefone', nascimento='$nascimento', fotoPerfil='$path' WHERE id='$idUsuario';";
+                $sql = "UPDATE cursophp.clientes SET nome='$nome', email='$email', $sql_code_extra telefone='$telefone', nascimento='$nascimento' WHERE id='$idUsuario';";
                 $sqlQuery = $mysqli->query($sql) or die($mysqli->error);
-    
-                echo "<p style='color: green;'><b>Usuário atualizado com sucesso!!</b></p>";
-                header('Refresh:0');
+
+                header("Refresh:0");
             }
         }
         ?>
-
         <p>
             <button type="submit">Atualizar</button> 
             <button><a href="listaDeClientes.php">Lista de Clientes</a></button>
