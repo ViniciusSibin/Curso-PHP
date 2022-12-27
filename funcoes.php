@@ -53,18 +53,18 @@
 
     function uploadArquivo ($error, $size, $name, $tmp_name, $diretorio){
         if($error){
-            return "Arquivo com erro!";
+            return 1;
         }
 
         if($size > 2097152){
-            return "Arquivo muito grande!! Max: 2MB";
+            return 2;
         }
 
         $novoNomeDoArquivo = uniqid();
         $extensao = strtolower(pathinfo($name, PATHINFO_EXTENSION));
 
         if($extensao != "jpg" && $extensao != "png"){
-            return "Tipo de arquivo não aceito, tipos aceitos:<br> <b>jpg</b>, <b>png</b>";
+            return 3;
         }
 
         $path = $diretorio . $novoNomeDoArquivo . "." . $extensao;
