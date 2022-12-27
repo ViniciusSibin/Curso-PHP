@@ -11,6 +11,7 @@
         $sqlExclusao = "DELETE FROM clientes WHERE id = $usuarioID";
         $exclusaoQuery = $mysqli->query($sqlExclusao) or die($mysqli->error);
         if($exclusaoQuery){
+                unlink($usuario['fotoPerfil']);
             header("Location: listaDeClientes.php");
         }
     }
