@@ -27,6 +27,7 @@
             <th>Telefone</th>
             <th>Data Nascimento</th>
             <th>Data Cadastro</th>
+            <th>Admin</th>
             <th></th>
         </thead>
         <tbody>
@@ -45,6 +46,7 @@
                     <td><?php echo visualizaTelefone($cliente['telefone']); ?></td>
                     <td><?php echo visualizaNascimento($cliente['nascimento']); ?></td>
                     <td><?php echo visualizaDataBanco($cliente['dataCadastro']); ?></td>
+                    <td><?php if($cliente['admin']){echo "SIM";}else{echo "NÃO";}?></td>
                     <td>
                         <a href="atualizarCadastro.php?id=<?php echo $cliente['id']; ?>">Atualizar</a>
                         <a href="deletarCadastro.php?id=<?php echo $cliente['id']; ?>">Deletar</a>
