@@ -5,8 +5,8 @@
         session_start();
     }
 
-    if(!isset($_SESSION['usuario'])){
-        header("Location: index.php");
+    if(!isset($_SESSION['admin']) || !$_SESSION['admin']){
+        header("Location: listaDeClientes.php");
         die();
     }
 
