@@ -3,8 +3,7 @@
     require_once("lib/funcoes.php");
     
     $pesquisa = "";
-
-    if(isset($_GET['pesquisa'])) $pesquisa = $_GET['pesquisa'];
+    if(isset($_GET['pesquisa'])) $pesquisa = $mysqli->escape_string($_GET['pesquisa']);
 
 
     $sql = "SELECT * FROM clientes WHERE nome LIKE '%$pesquisa%' OR email LIKE '%$pesquisa%' OR telefone LIKE '%$pesquisa%' OR Nascimento LIKE '%$pesquisa%'";
