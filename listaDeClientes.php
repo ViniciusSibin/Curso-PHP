@@ -1,7 +1,13 @@
 <?php
     require_once("lib/conexao.php");
     require_once("lib/funcoes.php");
-    $sql = "SELECT * FROM clientes";
+    
+    $pesquisa = "";
+
+    if(isset($_GET['pesquisa'])) $pesquisa = $_GET['pesquisa'];
+
+
+    $sql = "SELECT * FROM clientes WHERE nome LIKE '%$pesquisa%' OR email LIKE '%$pesquisa%' OR telefone LIKE '%$pesquisa%' OR Nascimento LIKE '%$pesquisa%'";
     $tabelaClientes = $mysqli->query($sql) or die($mysqli->error);
     $numLinhas = $tabelaClientes->num_rows;
 
@@ -26,6 +32,11 @@
 </head>
 <body>
     <h1>Lista de clientes</h1>
+    <form method="GET" action="">
+        <label>Pesquisa:</label>
+        <input type="text" name="pesquisa" placeholder="O que você procura?">
+        <button type="submit">Pesquisar</button>
+    </form>
     <p>Clientes cadastrados no sistema</p>
     <table border="1" cellpadding="10">
         <thead>
