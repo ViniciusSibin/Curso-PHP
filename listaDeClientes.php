@@ -68,8 +68,8 @@
                     <td><?php if($cliente['admin']){echo "SIM";}else{echo "NÃO";}?></td>
                     <?php if($_SESSION['admin']){ ?>
                     <td>
-                        <a href="atualizarCadastro.php?id=<?php echo $cliente['id']; ?>">Atualizar</a>
-                        <a href="deletarCadastro.php?id=<?php echo $cliente['id']; ?>">Deletar</a>
+                        <a href="atualizarCadastro.php?id=<?php echo $cliente['id']; ?>"><img height="20" src="arquivos/icones/editarPerfil.png" alt=""></a>
+                        <a href="deletarCadastro.php?id=<?php echo $cliente['id']; ?>"><img height="21" src="arquivos/icones/deletarPerfil.png" alt=""></a>
                     </td>
                     <?php } ?>
                 </tr>
