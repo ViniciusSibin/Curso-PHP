@@ -33,7 +33,7 @@
     <h1>Lista de clientes</h1>
     <form method="GET" action="">
         <label>Pesquisa:</label>
-        <input type="text" name="pesquisa" placeholder="O que você procura?">
+        <input type="text" name="pesquisa" placeholder="O que você procura?" value="<?php if(isset($_GET['pesquisa'])) echo $_GET['pesquisa'];?>">
         <button type="submit">Pesquisar</button>
     </form>
     <p>Clientes cadastrados no sistema</p>
